@@ -5,6 +5,12 @@ requirejs.config({
   , { name: 'things', location: 'things',  main: 'index.js' }
   , { name: 'world',  location: 'models',  main: 'world.js' }
   ]
+
+, shim: {
+    'jquery.finger': {
+      deps: ['jquery']
+    }
+  }
 });
 
 define(function(require){

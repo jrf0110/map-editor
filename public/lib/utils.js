@@ -4,6 +4,8 @@ define(function(require){
   var Backbone  = require('backbone');
   var domready  = require('domReady');
 
+  require('jquery.finger');
+
   var utils = _.extend( {}, _ );
 
   utils.domready = domready;
