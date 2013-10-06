@@ -23,7 +23,6 @@ define(function(require){
       app.worldView.enterEditMode();
 
       utils.domready( function(){
-        utils.FastClick.attach( document.body );
         document.body.appendChild( app.worldView.$el[0] );
         document.body.appendChild( app.worldView.editor.$el[0] );
       });

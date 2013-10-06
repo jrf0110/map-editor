@@ -20,8 +20,7 @@
     "baseUrl": "public",
     "dependencies": {
       "backbone": "1.0.x",
-      "domReady": "2.0.x",
-      "fastclick": "0.6.7"
+      "domReady": "2.0.x"
     }
   },
   "devDependencies": {

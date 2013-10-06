@@ -3,16 +3,12 @@ define(function(require){
   var _         = require('underscore');
   var Backbone  = require('backbone');
   var domready  = require('domReady');
-  var FastClick = require('fastclick');
-
 
   var utils = _.extend( {}, _ );
 
   utils.domready = domready;
 
   utils.dom = $;
-
-  utils.FastClick = FastClick;
 
   utils.Backbone    = Backbone;
   utils.View        = Backbone.View;
