@@ -1,4 +1,3 @@
 module.exports = {
-  oauth:    require('./oauth')
-, session:  require('./session')
+  session:  require('./session')
 };

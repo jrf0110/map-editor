@@ -12,7 +12,8 @@
     "dirac": "0.x.x",
     "dirac-middleware": "0.x.x",
     "stdm": "0.x.x",
-    "request": "~2.27.0"
+    "request": "~2.27.0",
+    "sugar": "~1.4.1"
   },
   "jam": {
     "packageDir": "public/jam",
@@ -21,5 +22,11 @@
       "backbone": "1.0.x",
       "domReady": "2.0.x"
     }
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.6.4",
+    "grunt-contrib-watch": "~0.5.3",
+    "requirejs": "~2.1.8"
   }
 }

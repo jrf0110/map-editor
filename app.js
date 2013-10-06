@@ -67,36 +67,33 @@ app.del( '/api/worlds/:id'
 , m.remove( db.worlds )
 );
 
-app.get( '/api/worlds/:world_id/things'
-, m.param('world_id')
-, m.param('id')
-, m.pagination()
-, m.find( db.things )
-);
+// app.get( '/api/worlds/:world_id/things'
+// , m.param('world_id')
+// , m.param('id')
+// , m.pagination()
+// , m.find( db.things )
+// );
 
-app.post('/api/worlds/:world_id/things'
-, m.param('world_id')
-, m.param('id')
-, m.insert( db.things )
-);
+// app.post('/api/worlds/:world_id/things'
+// , m.value('world_id')
+// , m.insert( db.things )
+// );
 
-app.get( '/api/worlds/:world_id/things/:id'
-, m.param('world_id')
-, m.param( 'id' )
-, m.findOne( db.things )
-);
+// app.get( '/api/worlds/:world_id/things/:id'
+// , m.param( 'id' )
+// , m.findOne( db.things )
+// );
 
-app.put( '/api/worlds/:world_id/things/:id'
-, m.param('world_id')
-, m.param( 'id' )
-, m.update( db.things )
-);
+// app.put( '/api/worlds/:world_id/things/:id'
+// , m.param( 'id' )
+// , m.update( db.things )
+// );
 
-app.del( '/api/worlds/:world_id/things/:id'
-, m.param('world_id')
-, m.param( 'id' )
-, m.remove( db.things )
-);
+// app.del( '/api/worlds/:world_id/things/:id'
+// , m.param('world_id')
+// , m.param( 'id' )
+// , m.remove( db.things )
+// );
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
