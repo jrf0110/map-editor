@@ -5,12 +5,6 @@ requirejs.config({
   , { name: 'things', location: 'things',  main: 'index.js' }
   , { name: 'world',  location: 'models',  main: 'world.js' }
   ]
-
-, shim: {
-    'jquery.finger': {
-      deps: ['jquery']
-    }
-  }
 });
 
 define(function(require){
@@ -29,6 +23,7 @@ define(function(require){
       app.worldView.enterEditMode();
 
       utils.domready( function(){
+        utils.FastClick.attach( document.body );
         document.body.appendChild( app.worldView.$el[0] );
         document.body.appendChild( app.worldView.editor.$el[0] );
       });

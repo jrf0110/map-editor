@@ -21,7 +21,7 @@
     "dependencies": {
       "backbone": "1.0.x",
       "domReady": "2.0.x",
-      "jquery.finger": "0.1.0-beta.1"
+      "fastclick": "0.6.7"
     }
   },
   "devDependencies": {
