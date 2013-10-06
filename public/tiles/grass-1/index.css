@@ -1,6 +1,6 @@
 .world.edit-mode[data-pack="ground"] .tile:hover,
 .tile.ground {
-  background-image: url('tileset.bmp');
+  background-image: url('tileset.png');
 }
 
 .world.edit-mode[data-tile="ground-grass-1"] .tile:hover,
