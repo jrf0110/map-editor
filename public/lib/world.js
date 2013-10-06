@@ -10,8 +10,8 @@ define(function(require){
     className: 'world edit-mode'
 
   , events: {
-      'mouseenter .tile':   'onTileMouseEnter'
-    , 'click .tile':        'onTileClick'
+      /*'mouseenter .tile':   'onTileMouseEnter'
+    , */'click .tile':        'onTileClick'
     }
 
   , template: [

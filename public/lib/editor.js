@@ -1,26 +1,26 @@
 define(function(require){
   var utils     = require('utils');
   var world     = require('world');
-  var itemTmpl  = '<li class="tile-choice tile {{type}}" data-tile="{{type}}"></li>';
+  var itemTmpl  = '<li class="tile-choice tile {{pack}} {{tile}}" data-pack="{{pack}}" data-tile="{{tile}}"></li>';
 
   return utils.View.extend({
     className: 'editor'
 
   , tiles: [
-      'ground ground-grass-1'
-    , 'ground ground-dirt-patch-top-left'
-    , 'ground ground-dirt-patch-top'
-    , 'ground ground-dirt-patch-top-right'
-    , 'ground ground-dirt-patch-middle-left'
-    , 'ground ground-dirt-patch-middle'
-    , 'ground ground-dirt-patch-middle-right'
-    , 'ground ground-dirt-patch-bottom-left'
-    , 'ground ground-dirt-patch-bottom'
-    , 'ground ground-dirt-patch-bottom-right'
-    , 'ground ground-dirt-patch-corner-top-left'
-    , 'ground ground-dirt-patch-corner-top-right'
-    , 'ground ground-dirt-patch-corner-bottom-left'
-    , 'ground ground-dirt-patch-corner-bottom-right'
+      { pack: 'ground', tile: 'ground-grass-1' }
+    , { pack: 'ground', tile: 'ground-dirt-patch-top-left' }
+    , { pack: 'ground', tile: 'ground-dirt-patch-top' }
+    , { pack: 'ground', tile: 'ground-dirt-patch-top-right' }
+    , { pack: 'ground', tile: 'ground-dirt-patch-middle-left' }
+    , { pack: 'ground', tile: 'ground-dirt-patch-middle' }
+    , { pack: 'ground', tile: 'ground-dirt-patch-middle-right' }
+    , { pack: 'ground', tile: 'ground-dirt-patch-bottom-left' }
+    , { pack: 'ground', tile: 'ground-dirt-patch-bottom' }
+    , { pack: 'ground', tile: 'ground-dirt-patch-bottom-right' }
+    , { pack: 'ground', tile: 'ground-dirt-patch-corner-top-left' }
+    , { pack: 'ground', tile: 'ground-dirt-patch-corner-top-right' }
+    , { pack: 'ground', tile: 'ground-dirt-patch-corner-bottom-left' }
+    , { pack: 'ground', tile: 'ground-dirt-patch-corner-bottom-right' }
     ]
 
   , itemTmpl: function( obj ){
@@ -43,7 +43,7 @@ define(function(require){
   , render: function(){
       var frag = "";
       for ( var i = 0, l = this.tiles.length; i < l; ++i ){
-        frag += this.itemTmpl({ type: this.tiles[ i ] });
+        frag += this.itemTmpl( this.tiles[ i ] );
       }
 
       this.$el.html( '<div class="tile-choices">' + frag + '</div><button class="btn-save">Save</button>' );
@@ -68,7 +68,10 @@ define(function(require){
   , onTileChoiceClick: function( e ){
       this.$el.find('.tile-choice').removeClass('selected');
       var tile = $(e.target).addClass('selected').data( 'tile' );
-      this.current = tile;
+      var pack = $(e.target).addClass('selected').data( 'pack' );
+      this.current = pack + ' ' + tile;
+      this.options.worldView.$el.attr('data-pack', pack);
+      this.options.worldView.$el.attr('data-tile', tile);
     }
 
   , onBtnSaveClick: function( e ){
