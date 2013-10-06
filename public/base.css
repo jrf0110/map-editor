@@ -5,6 +5,17 @@ body, html {
   height: 100%;
   /*overflow: hidden;*/
   background: black;
+
+  font-family: 'press_start_2pregular', sans-serif;
+}
+
+a {
+  color: rgb(239, 239, 0);
+  text-decoration: none;
+}
+
+a:hover {
+  color: rgb(239, 200, 0);
 }
 
 .hide { display: none !important; }
@@ -32,16 +43,11 @@ body, html {
   width: 40px;
   height: 40px;
   cursor: pointer;
-  box-sizing: border-box;
 }
 
 .world > .tiles > .tile-group {
   display: block;
   float: left;
-}
-
-.world.edit-mode .tile:hover {
-  /*border: solid 2px rgba(0,0,0, 0.3);*/
 }
 
 .editor {
@@ -53,8 +59,7 @@ body, html {
   box-shadow: 3px 3px 1px rgba(0, 0, 0, 0.27);
   border: solid rgba(0, 0, 0, 0.45) 1px;
   border-radius: 3px;
-  background: rgba(85, 85, 85, 0.72);
-  background: #555;
+  background: rgba(85, 85, 85, 0.50);
   z-index: 1000;
 }
 
@@ -73,7 +78,7 @@ body, html {
   padding: 0;
   cursor: pointer;
   border-radius: 2px;
-  border: solid 1px rgba(0,0,0, 0.6);
+  border: solid 1px #111;
   -webkit-transform: scale(0.8);
   -webkit-transition: -webkit-transform 0.1s linear, border-color 0.1s linear;
 }

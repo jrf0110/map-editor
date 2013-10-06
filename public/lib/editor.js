@@ -46,7 +46,7 @@ define(function(require){
         frag += this.itemTmpl( this.tiles[ i ] );
       }
 
-      this.$el.html( '<div class="tile-choices">' + frag + '</div><button class="btn-save">Save</button>' );
+      this.$el.html( '<a href="#" class="btn-save">Save</a><div class="tile-choices">' + frag + '</div>' );
 
       return this;
     }
@@ -75,6 +75,7 @@ define(function(require){
     }
 
   , onBtnSaveClick: function( e ){
+      e.preventDefault();
       this.save();
     }
   });
