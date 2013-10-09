@@ -62,6 +62,11 @@ app.put( '/api/worlds/:id'
 , m.update( db.worlds )
 );
 
+app.patch( '/api/worlds/:id'
+, m.param( 'id' )
+, m.update( db.worlds )
+);
+
 app.del( '/api/worlds/:id'
 , m.param( 'id' )
 , m.remove( db.worlds )
