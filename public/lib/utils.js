@@ -3,12 +3,15 @@ define(function(require){
   var _         = require('underscore');
   var Backbone  = require('backbone');
   var domready  = require('domReady');
+  var key       = require('keymaster');
 
   var utils = _.extend( {}, _ );
 
   utils.domready = domready;
 
   utils.dom = $;
+
+  utils.key = key;
 
   utils.Backbone    = Backbone;
   utils.View        = Backbone.View;

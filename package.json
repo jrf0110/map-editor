@@ -20,7 +20,8 @@
     "baseUrl": "public",
     "dependencies": {
       "backbone": "1.0.x",
-      "domReady": "2.0.x"
+      "domReady": "2.0.x",
+      "keymater": "1.0.x"
     }
   },
   "devDependencies": {

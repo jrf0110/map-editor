@@ -2,9 +2,17 @@ define(function(require){
   var utils = require('utils');
 
   return utils.View.extend({
-    render: function(){
+    className: 'thing'
+
+  , render: function(){
       this.$el.html( this.template( this.model.toJSON() ) );
 
+      this.renderPosition();
+
+      return this;
+    }
+
+  , renderPosition: function(){
       this.$el.css({
         '-webkit-transform': 'translate3d(' + [
           this.options.tileSize * this.model.get('x')
