@@ -49,10 +49,10 @@ define(function(require){
     }
   };
 
-  utils.key( 'w', utils.throttle( gamepad.up, 300 ) );
-  utils.key( 's', utils.throttle( gamepad.down, 300 ) );
-  utils.key( 'a', utils.throttle( gamepad.left, 300 ) );
-  utils.key( 'd', utils.throttle( gamepad.right, 300 ) );
+  utils.key( 'w', utils.throttle( gamepad.up, 100 ) );
+  utils.key( 's', utils.throttle( gamepad.down, 100 ) );
+  utils.key( 'a', utils.throttle( gamepad.left, 100 ) );
+  utils.key( 'd', utils.throttle( gamepad.right, 100 ) );
 
   return gamepad;
 });
