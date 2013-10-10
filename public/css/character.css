@@ -1,0 +1,33 @@
+.character {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 32px;
+  height: 32px;
+  margin-top: -16px;
+  margin-left: -16px;
+  -webkit-animation: character-walking alternate 0.4s infinite;
+  -webkit-animation-timing-function: step-end;
+}
+
+@-webkit-keyframes character-walking {
+  0%    { background-position-x: 0; }
+  33%   { background-position-x: -32px; }
+  66%   { background-position-x: -64px; }
+}
+
+.character.looking-down {
+  background-position-y: 0;
+}
+
+.character.looking-left {
+  background-position-y: -32px;
+}
+
+.character.looking-right {
+  background-position-y: -64px;
+}
+
+.character.looking-up {
+  background-position-y: -96px;
+}

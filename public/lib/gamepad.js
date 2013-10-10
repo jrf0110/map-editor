@@ -26,25 +26,25 @@ define(function(require){
 
   , up: function(){
       if ( !gamepad.character ) return gamepad;
-     gamepad.character.set( 'y', gamepad.character.get('y') - 1 );
+     gamepad.character.move('up');
      return gamepad;
     }
 
   , right: function(){
       if ( !gamepad.character ) return gamepad;
-      gamepad.character.set( 'x', gamepad.character.get('x') + 1 );
+      gamepad.character.move('right');
       return gamepad;
     }
 
   , down: function(){
       if ( !gamepad.character ) return gamepad;
-      gamepad.character.set( 'y', gamepad.character.get('y') + 1 );
+      gamepad.character.move('down');
       return gamepad;
     }
 
   , left: function(){
       if ( !gamepad.character ) return gamepad;
-      gamepad.character.set( 'x', gamepad.character.get('x') - 1 );
+      gamepad.character.move('left');
       return gamepad;
     }
   };

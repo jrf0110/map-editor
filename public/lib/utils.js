@@ -1,11 +1,14 @@
 define(function(require){
-  var $         = require('jquery');
-  var _         = require('underscore');
-  var Backbone  = require('backbone');
-  var domready  = require('domReady');
-  var key       = require('keymaster');
+  var $           = require('jquery');
+  var _           = require('underscore');
+  var Backbone    = require('backbone');
+  var domready    = require('domReady');
+  var key         = require('keymaster');
+  var handlebars  = require('handlebars');
 
   var utils = _.extend( {}, _ );
+
+  utils.template = handlebars.compile;
 
   utils.domready = domready;
 
