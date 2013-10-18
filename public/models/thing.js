@@ -3,7 +3,8 @@
  */
 
 define(function(require){
-  var utils = require('utils');
+  var utils     = require('utils');
+  var boundary  = require('boundary');
 
   return utils.Model.extend({
     defaults: {
@@ -21,6 +22,13 @@ define(function(require){
       var value = this.get( axis ) + ( ['up', 'left'].indexOf( direction ) > -1 ? -1 : 1 );
 
       this.set( 'direction', direction );
+
+      var canMove = boundary.check(
+        axis === 'x' ? value : this.get('x')
+      , axis === 'y' ? value : this.get('y')
+      );
+
+      if ( !canMove ) return this;
 
       this.set( axis, value );
 
