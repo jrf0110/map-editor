@@ -8,9 +8,13 @@ define(function(require){
 
   return utils.Model.extend({
     defaults: {
-      x:          0
-    , y:          0
-    , direction: 'down'
+      x:                    0
+    , y:                    0
+    , direction:            'down'
+    , perceivedModX:        0
+    , perceivedModY:        0
+    , perceivedModWidth:    0
+    , perceivedModHeight:   0
     }
 
   , move: function( direction ){

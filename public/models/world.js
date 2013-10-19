@@ -33,15 +33,26 @@ define(function(require){
       var x, y, l, ll;
 
       if ( thing.changedAttributes() ){
-        for ( y = thing.previous('y'), l = thing.previous('y') + thing.previous('height'); y < l; ++y ){
-          for ( x = thing.previous('x'), ll = thing.previous('x') + thing.previous('width'); x < ll; ++x ){
+        y = thing.previous('y') + thing.previous('perceivedModY');
+        
+        l = y + thing.previous('height') + thing.previous('perceivedModHeight');
+
+        for (; y < l; ++y ){
+          x = thing.previous('x') + thing.previous('perceivedModX');
+          ll = x + thing.previous('width') + thing.previous('perceivedModWidth');
+          for (; x < ll; ++x ){
             delete this.thingPositions[ x + 'x' + y ];
           }
         }
       }
-    
-      for ( y = thing.get('y'), l = thing.get('y') + thing.get('height'); y < l; ++y ){
-        for ( x = thing.get('x'), ll = thing.get('x') + thing.get('width'); x < ll; ++x ){
+
+      y = thing.get('y') + thing.get('perceivedModY');
+      l = y + thing.get('height') + thing.get('perceivedModHeight');
+
+      for (; y < l; ++y ){
+        x = thing.get('x') + thing.get('perceivedModX');
+        ll = x + thing.get('width') + thing.get('perceivedModWidth');
+        for (; x < ll; ++x ){
           this.thingPositions[ x + 'x' + y ] = true;
         }
       }
