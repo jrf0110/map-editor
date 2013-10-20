@@ -17,6 +17,7 @@ define(function(require){
   utils.key = key;
 
   utils.Backbone    = Backbone;
+  utils.Events      = Backbone.Events;
   utils.View        = Backbone.View;
   utils.Collection  = Backbone.Collection;
   utils.Router      = Backbone.Router;

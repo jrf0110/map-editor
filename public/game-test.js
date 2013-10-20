@@ -4,6 +4,8 @@ define(function(require){
   var utils       = require('utils');
   var ThingModel  = require('models/thing');
   var boundary    = require('boundary');
+  require('lib/viewport')
+  
 
   var app = {
     init: function( worldName ){
