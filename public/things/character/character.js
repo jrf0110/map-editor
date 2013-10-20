@@ -74,7 +74,7 @@ define(function(require){
 
   , onClick: function(){
       gamepad.takeControl( this.model );
-      vieport.follow( this.model );
+      viewport.follow( this.model );
     }
   });
 });
