@@ -10,10 +10,11 @@ if (typeof module === 'object' && typeof define !== 'function') {
 
 
 define(function(require){
-  var utils   = require('utils');
-  var config  = require('config');
-  var Thing   = require('thing');
-  var gamepad = require('gamepad');
+  var utils     = require('utils');
+  var config    = require('config');
+  var Thing     = require('thing');
+  var gamepad   = require('gamepad');
+  var viewport  = require('viewport');
 
   return Thing.extend({
     moveTransition: '-webkit-transform 0.1s linear'
@@ -73,6 +74,7 @@ define(function(require){
 
   , onClick: function(){
       gamepad.takeControl( this.model );
+      vieport.follow( this.model );
     }
   });
 });
