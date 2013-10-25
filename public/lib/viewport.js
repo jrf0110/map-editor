@@ -8,6 +8,12 @@ define(function(require){
 
   var $window = utils.dom( window );
 
+  var $htmlBody;
+
+  $(function(){
+    $htmlBody = utils.dom('html, body');
+  });
+
   var viewport = utils.extend({
     options: {
       // The minimum amount of screenspace to show to keep character in view
@@ -55,8 +61,8 @@ define(function(require){
       var win = this.size();
       var pos = this.getCharacterPixelPosition( character );
 
-      pos.x -= parseInt(win.width / 2);
-      pos.y -= parseInt(win.height / 2);
+      pos.x -= parseInt( win.width / 2, 10 );
+      pos.y -= parseInt( win.height / 2, 10 );
 
       this.scrollTo( pos.x, pos.y );
 
@@ -91,7 +97,8 @@ define(function(require){
     }
 
   , scrollTo: function( x, y ){
-      utils.dom('html, body').animate({
+      $htmlBody.stop( false, true );
+      $htmlBody.animate({
         scrollTop:  y
       , scrollLeft: x
       });
