@@ -3,6 +3,7 @@ module.exports = function( grunt ){
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-named-modules');
 
   var config = {
     pkg: grunt.file.readJSON('package.json')
@@ -31,6 +32,14 @@ module.exports = function( grunt ){
         options: {
           spawn: false,
         }
+      },
+
+      namedModules: {
+        files: ['package.json'],
+        tasks: ['namedModules'],
+        options: {
+          spawn: false,
+        }
       }
     }
 
@@ -38,7 +47,7 @@ module.exports = function( grunt ){
       // define the files to lint
       all: ['*.js', 'lib/*.js', 'routes/*.js', 'public/**/*.js'],
       options: {
-        ignores: ['node_modules', 'public/jam/**/*.js', 'public/js/*.js'],
+        ignores: ['node_modules', 'public/jam/**', 'public/bower_components/**', 'public/js/*.js'],
         laxcomma: true,
         sub: true,
         globals: {

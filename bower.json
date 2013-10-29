@@ -1,0 +1,12 @@
+{
+  "name": "map-editor",
+  "version": "0.0.1",
+  "homepage": "https://github.com/jrf0110/map-editor",
+  "authors": [
+    "John Fawcett"
+  ],
+  "private": true,
+  "dependencies": {
+    "bootstrap": "3.x.x"
+  }
+}

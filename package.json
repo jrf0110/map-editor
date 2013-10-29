@@ -3,7 +3,8 @@
   "version": "0.0.4",
   "private": true,
   "scripts": {
-    "start": "node app"
+    "start": "node app",
+    "postinstall": "grunt namedModules; jam install; bower install"
   },
   "dependencies": {
     "express": "3.x.x",
@@ -13,7 +14,8 @@
     "dirac-middleware": "0.x.x",
     "stdm": "0.x.x",
     "request": "~2.27.0",
-    "sugar": "~1.4.1"
+    "sugar": "~1.4.1",
+    "nunjucks": "~1.0.0"
   },
   "jam": {
     "packageDir": "public/jam",
@@ -29,6 +31,14 @@
     "grunt": "~0.4.1",
     "grunt-contrib-jshint": "~0.6.4",
     "grunt-contrib-watch": "~0.5.3",
-    "requirejs": "~2.1.8"
+    "requirejs": "~2.1.8",
+    "grunt-named-modules": "~1.0.1"
+  },
+  "namedModules": {
+    "config": "config.js",
+    "utils": "lib/utils.js",
+    "middleware": "lib/middleware.js",
+    "db": "lib/db.js",
+    "errors": "lib/errors.js"
   }
 }

@@ -4,19 +4,20 @@
  */
 
 var
-  express = require('express')
-, http    = require('http')
-, path    = require('path')
-, app     = express()
-, m       = require('./lib/middleware')
-, routes  = require('./routes')
-, db      = require('./lib/db')
-, config  = require('./config')
+  express   = require('express')
+, http      = require('http')
+, path      = require('path')
+, nunjucks  = require('nunjucks')
+, app       = express()
+, m         = require('middleware')
+, routes    = require('./routes')
+, db        = require('./lib/db')
+, config    = require('config')
+, utils     = require('utils')
 ;
 
 app.configure(function(){
   app.set('port', config.httpPort);
-  app.set('views', __dirname + '/views');
   app.use(express.favicon());
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
@@ -26,6 +27,11 @@ app.configure(function(){
   app.use(m.error());
   app.use(m.dirac());
   app.use(app.router);
+
+  nunjucks.configure( __dirname + '/routes', {
+    autoescape: true,
+    express: app
+  });
 });
 
 app.configure('development', function(){
@@ -35,8 +41,18 @@ app.configure('development', function(){
   app.use(express.static(path.join(__dirname, 'public')));
 });
 
+for ( var key in routes ){
+  if ( typeof routes[ key ] === 'function' ){
+    routes[ key ]( app );
+  }
+}
+
 app.get( '/api/session'
 , routes.session.get
+);
+
+app.post( '/api/session'
+, routes.session.create
 );
 
 app.del( '/api/session'
