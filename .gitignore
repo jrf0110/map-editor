@@ -4,3 +4,5 @@ public/jam/
 public/bower_components/
 public/index-built.html
 public/env.js
+public/css/core.css
+public/css/title-screen.css

@@ -29,8 +29,9 @@ app.configure(function(){
   app.use(app.router);
 
   nunjucks.configure( __dirname + '/routes', {
-    autoescape: true,
-    express: app
+    autoescape: true
+  , express: app
+  , watch: true
   });
 });
 

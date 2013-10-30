@@ -3,6 +3,7 @@ module.exports = function( grunt ){
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-named-modules');
 
   var config = {
@@ -13,6 +14,18 @@ module.exports = function( grunt ){
         dirs: [
           './public/things'
         ]
+      }
+    }
+
+  , less: {
+      dev: {
+        options: {
+          // paths: ["public"]
+        }
+      , files: {
+          "public/css/core.css": "less/core.less"
+        , "public/css/title-screen.css": "routes/title-screen/title-screen.less"
+        }
       }
     }
 
@@ -29,6 +42,17 @@ module.exports = function( grunt ){
       grouper: {
         files: [],
         tasks: ['requireGrouper'],
+        options: {
+          spawn: false,
+        }
+      },
+
+      less: {
+        files: [
+          'routes/**/*.less'
+        , 'less/*.less'
+        ],
+        tasks: ['less'],
         options: {
           spawn: false,
         }
