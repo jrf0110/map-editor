@@ -15,6 +15,12 @@ Clone the repo, and install the dependencies:
 npm install
 ```
 
+You need the grunt-cli installed globally:
+
+```
+npm install -g grunt-cli
+```
+
 Create the database:
 
 ```
@@ -27,7 +33,7 @@ I'm still in hack mode and there are still tons of remnants from when I first ju
 Start the server on port 3300:
 
 ```
-npm start
+grunt
 ```
 
 File serving in development mode is done through the static file server express middleware. In prod, it is disabled. I have my nginx vhost configuration file checked in for when it goes to my VPS.
