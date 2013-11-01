@@ -55,5 +55,37 @@ define(function(require){
     }));
   };
 
+  $.fn.say = function( options ){
+    var defaults = {
+      delay: 50
+    };
+
+    options = $.extend( {}, defaults, options );
+
+    // Prep each character
+    this.each( function(){
+      var $el = $(this);
+
+      $el.html(
+        $el.text().split('').map( function( c ){
+          return '<span class="text-character hidden">' + c + '</span>';
+        }).join('')
+      );
+    });
+
+    this.css('visibility', 'visible');
+
+    var $chars = this.find('.text-character.hidden');
+    var curr = -1;
+    var showChar = function(){
+      if ( curr++ === $chars.length ) return;
+
+      $chars.eq( curr ).removeClass('hidden').css('visibility', 'visible');
+      setTimeout( showChar, options.delay );
+    };
+    showChar();
+  };
+
+
   return utils;
 });

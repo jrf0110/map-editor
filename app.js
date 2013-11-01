@@ -21,7 +21,6 @@ var
 var nEnv = nunjucks.configure( __dirname + '/routes', {
   autoescape: true
 , express: app
-, watch: true
 });
 
 app.configure(function(){

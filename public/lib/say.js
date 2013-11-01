@@ -12,10 +12,12 @@ if (typeof module === 'object' && typeof define !== 'function') {
 define(function(require){
   var utils = require('utils');
   var say = {
-    prep: function( $el ){
-      var $p = $el.find('> p').clone();
-      $el.find('> p').remove();
-    }
+    // prep: function( $el ){
+    //   var text = [];
+    //   $el.each( function(){
+    //     text.push( ( utils.dom( this ).text() ) );
+    //   });
+    // }
   };
 
   return say;
