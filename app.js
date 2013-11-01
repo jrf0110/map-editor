@@ -9,12 +9,20 @@ var
 , path      = require('path')
 , nunjucks  = require('nunjucks')
 , app       = express()
+, nEnv      = new nunjucks.Environment()
 , m         = require('middleware')
 , routes    = require('./routes')
 , db        = require('./lib/db')
+, nFilters  = require('./lib/nunjuck-filters')
 , config    = require('config')
 , utils     = require('utils')
 ;
+
+var nEnv = nunjucks.configure( __dirname + '/routes', {
+  autoescape: true
+, express: app
+, watch: true
+});
 
 app.configure(function(){
   app.set('port', config.httpPort);
@@ -26,13 +34,20 @@ app.configure(function(){
   app.use(express.cookieSession());
   app.use(m.error());
   app.use(m.dirac());
-  app.use(app.router);
 
-  nunjucks.configure( __dirname + '/routes', {
-    autoescape: true
-  , express: app
-  , watch: true
+  // Just make everyone the same user right now
+  app.use( function( req, res, next ){
+    db.users.findOne( 1, function( error, user ){
+      if ( error ) res.status(500).send();
+
+      req.user = user;
+      res.locals.user = user;
+
+      next();
+    });
   });
+
+  app.use(app.router);
 });
 
 app.configure('development', function(){
@@ -42,10 +57,16 @@ app.configure('development', function(){
   app.use(express.static(path.join(__dirname, 'public')));
 });
 
+// Run custom router function groups
 for ( var key in routes ){
   if ( typeof routes[ key ] === 'function' ){
     routes[ key ]( app );
   }
+}
+
+// Register nunjucks filters
+for ( var key in nFilters ){
+  nEnv.addFilter( key, nFilters[ key ] );
 }
 
 app.get( '/api/session'
@@ -89,33 +110,65 @@ app.del( '/api/worlds/:id'
 , m.remove( db.worlds )
 );
 
-// app.get( '/api/worlds/:world_id/things'
-// , m.param('world_id')
-// , m.param('id')
-// , m.pagination()
-// , m.find( db.things )
-// );
+app.get( '/api/users'
+, m.pagination()
+, m.find( db.users )
+);
 
-// app.post('/api/worlds/:world_id/things'
-// , m.value('world_id')
-// , m.insert( db.things )
-// );
+app.post('/api/users'
+, m.insert( db.users )
+);
 
-// app.get( '/api/worlds/:world_id/things/:id'
-// , m.param( 'id' )
-// , m.findOne( db.things )
-// );
+app.get( '/api/users/:id'
+, m.param( 'id' )
+, m.findOne( db.users )
+);
 
-// app.put( '/api/worlds/:world_id/things/:id'
-// , m.param( 'id' )
-// , m.update( db.things )
-// );
+app.put( '/api/users/:id'
+, m.param( 'id' )
+, m.update( db.users )
+);
 
-// app.del( '/api/worlds/:world_id/things/:id'
-// , m.param('world_id')
-// , m.param( 'id' )
-// , m.remove( db.things )
-// );
+app.patch( '/api/users/:id'
+, m.param( 'id' )
+, m.update( db.users )
+);
+
+app.del( '/api/users/:id'
+, m.param( 'id' )
+, m.remove( db.users )
+);
+
+app.get( '/api/users/:user_id/heroes'
+, m.pagination()
+, m.param('user_id')
+, m.find( db.heroes )
+);
+
+app.post('/api/users/:user_id/heroes'
+, m.param('user_id')
+, m.insert( db.heroes )
+);
+
+app.get( '/api/users/:user_id/heroes/:id'
+, m.param( 'id' )
+, m.findOne( db.heroes )
+);
+
+app.put( '/api/users/:user_id/heroes/:id'
+, m.param( 'id' )
+, m.update( db.heroes )
+);
+
+app.patch( '/api/users/:user_id/heroes/:id'
+, m.param( 'id' )
+, m.update( db.heroes )
+);
+
+app.del( '/api/users/:user_id/heroes/:id'
+, m.param( 'id' )
+, m.remove( db.heroes )
+);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

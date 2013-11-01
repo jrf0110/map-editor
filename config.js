@@ -1,5 +1,6 @@
-var utils = require('./lib/utils');
-var config = {};
+var utils   = require('./lib/utils');
+var eConfig = require('./env');
+var config  = {};
 
 /**
  * Change configuration environment

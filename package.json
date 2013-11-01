@@ -16,7 +16,9 @@
     "request": "~2.27.0",
     "sugar": "~1.4.1",
     "nunjucks": "~1.0.0",
-    "grunt-contrib-less": "~0.8.1"
+    "grunt-contrib-less": "~0.8.1",
+    "passport": "~0.1.17",
+    "passport-facebook": "~1.0.1"
   },
   "jam": {
     "packageDir": "public/jam",
@@ -33,7 +35,8 @@
     "grunt-contrib-jshint": "~0.6.4",
     "grunt-contrib-watch": "~0.5.3",
     "requirejs": "~2.1.8",
-    "grunt-named-modules": "~1.0.1"
+    "grunt-named-modules": "~1.0.1",
+    "grunt-express-server": "~0.4.5"
   },
   "namedModules": {
     "config": "config.js",

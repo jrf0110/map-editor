@@ -12,7 +12,11 @@
         return new User({{ user | json | safe }});
       });
 
-      require(['title-screen'], function( app ){
+      define( 'hero', ['models/hero'], function( Hero ){
+        return new Hero({{ hero | json | safe }});
+      });
+
+      require(['main-game'], function( app ){
         app.init();
       });
     </script>
@@ -20,22 +24,7 @@
   <body>
     <div class="ui-pane-container">
       <div class="ui-pane speech welcome">
-        <p>Welcome to the game that has yet to be named, user #{{user.id}}.</p>
-        <p>Please select a save file</p>
-      </div>
-
-      <div class="ui-pane saves">
-        <ul>
-          <li>
-            <a href="#">New Game</a>
-          </li>
-
-          {% for hero in user.heroes %}
-            <li>
-              <a href="/heroes/{{hero.id}}">{{hero.name}}</a>
-            </li>
-          {% endfor %}
-        </ul>
+        <p>Ohai</p>
       </div>
     </div>
   </body>

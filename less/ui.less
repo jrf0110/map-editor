@@ -2,7 +2,7 @@
 // UI //
 ////////
 
-.speechbox {
+.ui-pane {
   @padding-lr: 12px;
   @padding-tb: 6px;
 
@@ -11,14 +11,32 @@
   padding-top:    @padding-tb;
   padding-bottom: @padding-tb;
 
-  border-radius:  @speechbox-border-radius;
+  border-radius:  @ui-pane-border-radius;
   border-width:   3px;
   border-style:   solid;
-  border-color:   @speechbox-border-color;
+  border-color:   @ui-pane-border-color;
 
-  .gradient( @speechbox-bg-bottom, @speechbox-bg-bottom, @speechbox-bg-top );
+  .gradient( @ui-pane-bg-bottom, @ui-pane-bg-bottom, @ui-pane-bg-top );
 
-  color: @speechbox-text-color;
+  color: @ui-pane-text-color;
   font-size: 14px;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
+}
+
+.ui-pane a {
+  display: inline-block;
+  border-bottom: dotted 2px #FFF;
+  color: #fff;
+  text-decoration: none;
+}
+
+.ui-pane a:hover {
+  @color: rgba( 255, 255, 255, 0.85 );
+
+  color:        @color;
+  border-color: @color;
+}
+
+.ui-pane-container .ui-pane {
+  margin-bottom: 20px;
 }

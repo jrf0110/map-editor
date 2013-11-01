@@ -6,6 +6,12 @@ define(function(require){
     init: function(){
       
     }
+
+  , router: {
+      routes: {
+        
+      }
+    }
   };
 
   return app;

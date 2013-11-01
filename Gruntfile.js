@@ -5,9 +5,19 @@ module.exports = function( grunt ){
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-named-modules');
+  grunt.loadNpmTasks('grunt-express-server');
 
   var config = {
     pkg: grunt.file.readJSON('package.json')
+
+  , express: {
+      options: {}
+    , dev: {
+        options: {
+          script: 'app.js'
+        }
+      }
+    }
 
   , requireGrouper: {
       components: {
@@ -23,8 +33,8 @@ module.exports = function( grunt ){
           // paths: ["public"]
         }
       , files: {
-          "public/css/core.css": "less/core.less"
-        , "public/css/title-screen.css": "routes/title-screen/title-screen.less"
+          "public/css/core.gen.css": "less/core.less"
+        , "public/css/title-screen.gen.css": "routes/title-screen/title-screen.less"
         }
       }
     }
@@ -64,6 +74,12 @@ module.exports = function( grunt ){
         options: {
           spawn: false,
         }
+      },
+
+      express: {
+        files: ['*.js', 'routes/*.js', 'routes/**/*.html', 'routes/**/*.js']
+      , tasks: ['express:dev']
+      , options: { spawn: false }
       }
     }
 
@@ -95,5 +111,11 @@ module.exports = function( grunt ){
 
   grunt.initConfig( config );
 
-  grunt.registerTask('default', [ 'jshint' ]);
+  grunt.registerTask( 'default', [
+    'jshint'
+  , 'namedModules'
+  , 'less'
+  , 'express:dev'
+  , 'watch'
+  ]);
 };
