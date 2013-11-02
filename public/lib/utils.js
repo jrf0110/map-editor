@@ -56,8 +56,13 @@ define(function(require){
   };
 
   $.fn.say = function( options ){
+    var $this = this;
+
     var defaults = {
       delay: 50
+    , elementJumpDelay: 800
+    , endOfSentenceDelay: 500
+    , endOfSentenceChar: [ '.', '?', '!' ]
     };
 
     options = $.extend( {}, defaults, options );
@@ -75,15 +80,36 @@ define(function(require){
 
     this.css('visibility', 'visible');
 
-    var $chars = this.find('.text-character.hidden');
-    var curr = -1;
-    var showChar = function(){
-      if ( curr++ === $chars.length ) return;
+    var currEl = -1;
+    var showEl = function(){
+      if ( currEl++ === $this.length ) return;
 
-      $chars.eq( curr ).removeClass('hidden').css('visibility', 'visible');
-      setTimeout( showChar, options.delay );
+      showChar( $this.eq( currEl ).find('.text-character.hidden'), function(){
+        setTimeout( showEl, options.elementJumpDelay );
+      });
     };
-    showChar();
+
+    var showChar = function( $chars, curr, callback ){
+      if ( typeof curr === 'function' ){
+        callback = curr;
+        curr = -1;
+      } else {
+        curr = curr === null ? -1 : curr;
+      }
+
+      if ( curr++ === $chars.length ) return callback();
+
+      var text = $chars.eq( curr ).text();
+      $chars.eq( curr ).removeClass('hidden').css('visibility', 'visible');
+
+      setTimeout(
+        function(){ showChar( $chars, curr, callback )  }
+      , options.endOfSentenceChar.indexOf( text ) > -1
+          ? options.endOfSentenceDelay : options.delay
+      );
+    };
+
+    showEl();
   };
 
 
