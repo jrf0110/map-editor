@@ -5,7 +5,7 @@ define(function(require){
   var app = {
     init: function(){
       utils.domready( function(){
-        utils.dom('p').say()
+        utils.dom('p').say();
       });
     }
 

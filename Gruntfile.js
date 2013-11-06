@@ -33,8 +33,10 @@ module.exports = function( grunt ){
           // paths: ["public"]
         }
       , files: {
-          "public/css/core.gen.css": "less/core.less"
-        , "public/css/title-screen.gen.css": "routes/title-screen/title-screen.less"
+          "public/css/core.gen.css":          "less/core.less"
+        , "public/css/title-screen.gen.css":  "routes/title-screen/title-screen.less"
+        , "public/css/editor.gen.css":        "routes/editor/editor.less"
+        , "public/css/battle.gen.css":        "routes/battle/battle.less"
         }
       }
     }

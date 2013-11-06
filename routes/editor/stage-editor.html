@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <link rel="stylesheet" href="/css/editor.gen.css">
+
+    <script src="/jam/require.js"></script>
+    <script src="/require-config.js"></script>
+
+    <script>
+      define( 'user', ['models/user'], function( User ){
+        return new User({{ user | json | safe }});
+      });
+
+      require(['stage-editor'], function( app ){
+        app.init();
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Editor</h1>
+  </body>
+</html>

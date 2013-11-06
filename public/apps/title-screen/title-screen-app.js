@@ -4,7 +4,7 @@ define(function(require){
 
   var app = {
     init: function(){
-      
+      utils.dom('p').say();
     }
 
   , router: {
