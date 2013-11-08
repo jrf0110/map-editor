@@ -1,5 +1,6 @@
 define(function(require){
   var utils = require('utils');
+  var config = require('config');
 
   return utils.View.extend({
     className: 'thing'
@@ -15,11 +16,11 @@ define(function(require){
   , renderPosition: function(){
       this.$el.css({
         '-webkit-transform': 'translate3d(' + [
-          this.options.tileSize * this.model.get('x')
-        , this.options.tileSize * this.model.get('y')
+          config.tileSize * this.model.get('x')
+        , config.tileSize * this.model.get('y')
         ].join('px, ') + 'px, 0)'
-      , width:  this.options.tileSize * this.model.get('width') + 'px'
-      , height: this.options.tileSize * this.model.get('height') + 'px'
+      , width:  config.tileSize * this.model.get('width') + 'px'
+      , height: config.tileSize * this.model.get('height') + 'px'
       });
 
       return this;

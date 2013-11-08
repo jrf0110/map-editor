@@ -3,8 +3,9 @@
  */
 
 define(function(require){
-  var utils = require('utils');
-  var world = require('world');
+  var utils   = require('utils');
+  var stage   = require('stage');
+  var config  = require('config');
 
   var $window = utils.dom( window );
 
@@ -17,7 +18,7 @@ define(function(require){
   var viewport = utils.extend({
     options: {
       // The minimum amount of screenspace to show to keep character in view
-      buffer: world.get('tileSize')
+      buffer: config.tileSize
     }
 
   , follow: function( character ){
@@ -73,8 +74,8 @@ define(function(require){
       if ( !character ) character = this.following;
 
       return {
-        x: character.get('x') * world.get('tileSize')
-      , y: character.get('y') * world.get('tileSize')
+        x: character.get('x') * config.tileSize
+      , y: character.get('y') * config.tileSize
       };
     }
 
@@ -111,7 +112,7 @@ define(function(require){
     }
   }, utils.Events);
 
-  world.on( 'change:tileSize', function( world, size ){
+  stage.on( 'change:tileSize', function( stage, size ){
     viewport.options.buffer = size;
   });
 

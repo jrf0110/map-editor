@@ -16,7 +16,8 @@ define(function(require){
 
   var config = {
     defaults: {
-      spriteDir: 'sprites'
+      spriteDir: '/assets/sprites'
+    , tileSize: 40
     }
 
   , dev: {

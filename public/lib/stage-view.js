@@ -2,16 +2,16 @@ define(function(require){
   var utils       = require('utils');
   var scroll      = require('./scroll');
   var spacebar    = require('./spacebar');
-  var Editor      = require('./editor');
+  // var Editor      = require('./editor');
   var $Things     = require('things');
-  var world       = require('world');
+  var stage       = require('stage');
+  var config      = require('config');
 
-  var Stage = utils.View.extend({
+  var StageView = utils.View.extend({
     className: 'stage edit-mode'
 
   , events: {
-      /*'mouseenter .tile':   'onTileMouseEnter'
-    , */'click .tile':        'onTileClick'
+      'click .tile':        'onTileClick'
     }
 
   , template: [
@@ -19,11 +19,11 @@ define(function(require){
     ].join('\n')
 
   , initialize: function( options ){
-      this.editor = new Editor({ worldView: this });
-      this.editor.$el.addClass('hide');
+      // this.editor = new Editor({ stageView: this });
+      // this.editor.$el.addClass('hide');
 
-      world.on( 'change:tiles',   this.renderTiles, this );
-      world.on( 'change:things',  this.renderThings, this );
+      stage.on( 'change:tiles',   this.renderTiles, this );
+      stage.on( 'change:things',  this.renderThings, this );
 
       return this;
     }
@@ -50,9 +50,11 @@ define(function(require){
     }
 
   , renderTiles: function(){
-      var size = world.get('tileSize') * world.get('size');
+      var size = config.tileSize * stage.get('size');
 
-      this.editor.render();
+      if ( this.editMode ){
+        this.editor.render();
+      }
 
       this.$el.html( this.template );
       this.$tileHolder = this.$el.find( '.tiles' );
@@ -62,10 +64,10 @@ define(function(require){
 
       var tmpl = '<div class="tile {{class}}" data-tile="{{tile}}" data-x="{{x}}" data-y="{{y}}"></div>', out = "";
 
-      for ( var y = 0, l = world.get('tiles').length; y < l; ++y ){
-        for ( var x = 0, ll = world.get('tiles')[ y ].length; x < ll; ++x ){
-          out += tmpl.replace( '{{class}}', world.get('tiles')[ y ][ x ] )
-                     .replace( '{{tile}}', world.get('tiles')[ y ][ x ] )
+      for ( var y = 0, l = stage.get('tiles').length; y < l; ++y ){
+        for ( var x = 0, ll = stage.get('tiles')[ y ].length; x < ll; ++x ){
+          out += tmpl.replace( '{{class}}', stage.get('tiles')[ y ][ x ] )
+                     .replace( '{{tile}}', stage.get('tiles')[ y ][ x ] )
                      .replace( '{{x}}', x )
                      .replace( '{{y}}', y );
         }
@@ -78,13 +80,13 @@ define(function(require){
       var this_ = this;
       var $els = utils.dom();
 
-      world.get('things').each( function( thing ){
+      stage.get('things').each( function( thing ){
         if ( !(thing.get('type') in $Things) ) return;
 
         $els = $els.add(
           new $Things[ thing.get('type') ].Main({
             model:    thing
-          , tileSize: world.get('tileSize')
+          , tileSize: stage.get('tileSize')
           }).render().$el
         );
       });
@@ -103,21 +105,6 @@ define(function(require){
       hand.grab( this.$tileHolder, e );
     }
 
-  , onTileMouseEnter: function( e ){
-      if ( !this.editMode ) return;
-
-      if ( this.$enteredElement ){
-        this.$enteredElement[0].className = this.enteredElementOriginalClass;
-      }
-
-      if ( this.editor.current ){
-        this.$enteredElement = utils.dom( e.target );
-        this.enteredElementOriginalClass = this.$enteredElement[0].className;
-        this.$enteredElement[0].className = "tile";
-        this.$enteredElement.addClass( this.editor.current );
-      }
-    }
-
   , onTileClick: function( e ){
       if ( !this.editMode ) return;
 
@@ -127,10 +114,10 @@ define(function(require){
         $el[0].className = "tile";
         $el.addClass( this.editor.current );
         $el.data( 'tile', this.editor.current );
-        world.get('tiles')[ $el.data('y') ][ $el.data('x') ] = this.editor.current;
+        stage.get('tiles')[ $el.data('y') ][ $el.data('x') ] = this.editor.current;
       }
     }
   });
 
-  return Stage;
+  return StageView;
 });

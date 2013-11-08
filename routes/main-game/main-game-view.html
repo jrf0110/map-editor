@@ -1,8 +1,7 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-    <link rel="stylesheet" href="/css/core.gen.css">
-    <link rel="stylesheet" href="/css/title-screen.gen.css">
+    <link rel="stylesheet" href="/css/main-game.gen.css">
 
     <script src="/jam/require.js"></script>
     <script src="/require-config.js"></script>
@@ -16,8 +15,8 @@
         return new Hero({{ hero | json | safe }});
       });
 
-      define( 'level', ['models/level'], function( Level ){
-        return new Level({{ level | json | safe }});
+      define( 'stage', ['models/stage'], function( Stage ){
+        return new Stage({{ level | json | safe }});
       });
 
       require(['main-game'], function( app ){
@@ -26,11 +25,6 @@
     </script>
   </head>
   <body>
-    <div class="ui-pane-container">
-      <div class="ui-pane speech welcome">
-        <p>Oh hai, {{hero.name}}. I didn't see you there. Are you ready to begin your journey?</p>
-        <p data-say-wait="true">This is just another paragraph to test.</p>
-      </div>
-    </div>
+    
   </body>
 </html>

@@ -4,13 +4,13 @@ define(function(require){
 
   var Things = utils.Collection.extend({
     url: function(){
-      return this.world.url() + '/things';
+      return this.stage.url() + '/things';
     }
 
   , model: Thing
 
   , initialize: function( models, options ){
-      this.world = options.world;
+      this.stage = options.stage;
       return this;
     }
   });

@@ -37,6 +37,7 @@ module.exports = function( grunt ){
         , "public/css/title-screen.gen.css":  "routes/title-screen/title-screen.less"
         , "public/css/editor.gen.css":        "routes/editor/editor.less"
         , "public/css/battle.gen.css":        "routes/battle/battle.less"
+        , "public/css/main-game.gen.css":     "routes/main-game/main-game.less"
         }
       }
     }

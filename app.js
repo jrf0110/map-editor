@@ -46,6 +46,12 @@ app.configure(function(){
     });
   });
 
+  // Expose console api to templates
+  app.use( function( req, res, next ){
+    res.locals.console = console;
+    next();
+  });
+
   app.use(app.router);
 });
 
