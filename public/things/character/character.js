@@ -8,7 +8,6 @@ if (typeof module === 'object' && typeof define !== 'function') {
   };
 }
 
-
 define(function(require){
   var utils     = require('utils');
   var config    = require('config');

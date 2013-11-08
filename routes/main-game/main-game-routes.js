@@ -7,9 +7,7 @@ module.exports = function( app ){
 
     // Lookup current level
   , function( req, res, next ){
-      var id = res.locals.hero.campaign_level_id;
-      console.log(id);
-      db.campaign_levels.findOne( id, function( error, level ){
+      db.campaign_levels.findHeroCampaignLevel( req.param('id'), function( error, level ){
         if ( error ) return res.send(500);
 console.log(level);
         res.locals.level = level;
