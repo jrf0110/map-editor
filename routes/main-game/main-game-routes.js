@@ -10,6 +10,17 @@ module.exports = function( app ){
 
       next();
     }
+
+  , function( req, res, next ){
+      // Lookup current level
+      db.levels.findHeroCampaignLevel( req.param('id'), function( error, level ){
+        if ( error ) return res.send(500);
+
+        res.locals.level = level;
+
+        next();
+      });
+    }
   , m.view( 'main-game/main-game-view.html' )
   );
 };

@@ -21,7 +21,7 @@ module.exports = function( app ){
   , m.update( db.battles )
   );
 
-  app.patch( '/api/battles/:id'
+  app.patch('/api/battles/:id'
   , m.param( 'id' )
   , m.update( db.battles )
   );
