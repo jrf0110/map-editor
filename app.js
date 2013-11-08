@@ -80,35 +80,6 @@ app.del( '/api/session'
 , routes.session.del
 );
 
-app.get( '/api/worlds'
-, m.pagination()
-, m.find( db.worlds )
-);
-
-app.post('/api/worlds'
-, m.insert( db.worlds )
-);
-
-app.get( '/api/worlds/:id'
-, m.param( 'id' )
-, m.findOne( db.worlds )
-);
-
-app.put( '/api/worlds/:id'
-, m.param( 'id' )
-, m.update( db.worlds )
-);
-
-app.patch( '/api/worlds/:id'
-, m.param( 'id' )
-, m.update( db.worlds )
-);
-
-app.del( '/api/worlds/:id'
-, m.param( 'id' )
-, m.remove( db.worlds )
-);
-
 app.get( '/api/stages'
 , m.pagination()
 , m.find( db.stages )
