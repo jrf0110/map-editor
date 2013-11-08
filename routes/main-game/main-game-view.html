@@ -16,6 +16,10 @@
         return new Hero({{ hero | json | safe }});
       });
 
+      define( 'level', ['models/level'], function( Level ){
+        return new Level({{ level | json | safe }});
+      });
+
       require(['main-game'], function( app ){
         app.init();
       });

@@ -2,12 +2,12 @@ define(function(require){
   var utils   = require('utils');
   var Things  = require('../collections/things');
 
-  var World = utils.Model.extend({
-    urlRoot: '/api/worlds'
+  var Stage = utils.Model.extend({
+    urlRoot: '/api/levels'
 
   , setTransforms: {
       things: function( val ){
-        var things = new Things( val, { world: this } );
+        var things = new Things( val, { stage: this } );
 
         this.thingPositions = {};
 
@@ -65,7 +65,5 @@ define(function(require){
     }
   });
 
-  var world = new World();
-
-  return world;
+  return Stage;
 });
