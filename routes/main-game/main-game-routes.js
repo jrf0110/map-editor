@@ -11,9 +11,9 @@ module.exports = function( app ){
       next();
     }
 
+    // Lookup current level
   , function( req, res, next ){
-      // Lookup current level
-      db.levels.findHeroCampaignLevel( req.param('id'), function( error, level ){
+      db.campaign_levels.findHeroCampaignLevel( req.param('id'), function( error, level ){
         if ( error ) return res.send(500);
 
         res.locals.level = level;

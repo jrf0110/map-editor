@@ -109,6 +109,35 @@ app.del( '/api/worlds/:id'
 , m.remove( db.worlds )
 );
 
+app.get( '/api/stages'
+, m.pagination()
+, m.find( db.stages )
+);
+
+app.post('/api/stages'
+, m.insert( db.stages )
+);
+
+app.get( '/api/stages/:id'
+, m.param( 'id' )
+, m.findOne( db.stages )
+);
+
+app.put( '/api/stages/:id'
+, m.param( 'id' )
+, m.update( db.stages )
+);
+
+app.patch( '/api/stages/:id'
+, m.param( 'id' )
+, m.update( db.stages )
+);
+
+app.del( '/api/stages/:id'
+, m.param( 'id' )
+, m.remove( db.stages )
+);
+
 app.get( '/api/users'
 , m.pagination()
 , m.find( db.users )
