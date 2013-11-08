@@ -82,7 +82,7 @@ module.exports = function( grunt ){
       express: {
         files: [
           '*.js'
-        , 'lib/*.js, lib/**/*.js'
+        , 'lib/*.js', 'lib/**/*.js'
         , 'routes/*.js', 'routes/**/*.html', 'routes/**/*.js'
         ]
       , tasks: ['express:dev']
