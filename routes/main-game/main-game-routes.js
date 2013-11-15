@@ -9,7 +9,7 @@ module.exports = function( app ){
   , function( req, res, next ){
       db.campaign_levels.findHeroCampaignLevel( req.param('id'), function( error, level ){
         if ( error ) return res.send(500);
-console.log(level);
+
         res.locals.level = level;
 
         next();

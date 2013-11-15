@@ -2,18 +2,34 @@
   position: absolute;
   top: 50%;
   left: 50%;
+  
+  -webkit-animation: character-walking-1x1 alternate 0.4s infinite;
+  -webkit-animation-timing-function: step-end;
+}
+
+@-webkit-keyframes character-walking-1x1 {
+  0%    { background-position-x: 0; }
+  33%   { background-position-x: -32px; }
+  66%   { background-position-x: -64px; }
+}
+
+@-webkit-keyframes character-walking-1x2 {
+  0%    { background-position-x: 0; }
+  33%   { background-position-x: -40px; }
+  66%   { background-position-x: -80px; }
+}
+
+.character-1x1 {
   width: 32px;
   height: 32px;
   margin-top: -16px;
   margin-left: -16px;
-  -webkit-animation: character-walking alternate 0.4s infinite;
-  -webkit-animation-timing-function: step-end;
 }
 
-@-webkit-keyframes character-walking {
-  0%    { background-position-x: 0; }
-  33%   { background-position-x: -32px; }
-  66%   { background-position-x: -64px; }
+.character-1x2 {
+  width: 40px;
+  height: 80px;
+  -webkit-animation-name: character-walking-1x2;
 }
 
 .character.looking-down {
@@ -30,4 +46,16 @@
 
 .character.looking-up {
   background-position-y: -96px;
+}
+
+.character.character-1x2.looking-left {
+  background-position-y: 0; //-80px;
+}
+
+.character.character-1x2.looking-right {
+  background-position-y: 0; //-160px;
+}
+
+.character.character-1x2.looking-up {
+  background-position-y: 0; //-240px;
 }

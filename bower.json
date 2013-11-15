@@ -10,6 +10,7 @@
     "bootstrap": "3.x.x",
     "semantic-grid": "*",
     "normalize-css": "~2.1.3",
-    "less-elements": "*"
+    "less-elements": "*",
+    "mousetrap": "~1.4.6"
   }
 }

@@ -33,7 +33,6 @@ define(function(require){
       );
 
       if ( !canMove ) return this;
-
       this.set( axis, value );
 
       return this;

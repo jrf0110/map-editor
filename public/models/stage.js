@@ -34,7 +34,6 @@ define(function(require){
 
       if ( thing.changedAttributes() ){
         y = thing.previous('y') + thing.previous('perceivedModY');
-        
         l = y + thing.previous('height') + thing.previous('perceivedModHeight');
 
         for (; y < l; ++y ){

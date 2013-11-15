@@ -3,7 +3,8 @@ define(function(require){
   var _           = require('underscore');
   var Backbone    = require('backbone');
   var domready    = require('domReady');
-  var key         = require('keymaster');
+  // var key         = require('keymaster');
+  var key         = require('mousetrap');
   var handlebars  = require('handlebars');
                     require('jquery-say');
 
@@ -16,7 +17,8 @@ define(function(require){
 
   utils.dom = $;
 
-  utils.key = key;
+  // utils.key = key;
+  utils.key = key.bind;
 
   utils.Backbone    = Backbone;
   utils.Events      = Backbone.Events;

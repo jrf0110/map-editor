@@ -10,6 +10,9 @@ requirejs.config({
   , { name: 'things',       location: 'things',             main: 'index.js' }
   , { name: 'title-screen', location: 'apps/title-screen',  main: 'title-screen-app.js' }
   , { name: 'main-game',    location: 'apps/main-game',     main: 'main-game-app.js' }
+  , { name: 'main-game',    location: 'apps/main-game',     main: 'main-game-app.js' }
+
+  , { name: 'mousetrap',    location: 'bower_components/mousetrap', main: 'mousetrap.js'}
   ]
 
 , paths: {

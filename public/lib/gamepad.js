@@ -48,10 +48,31 @@ define(function(require){
     }
   };
 
-  utils.key( 'w', utils.throttle( gamepad.up, 100 ) );
-  utils.key( 's', utils.throttle( gamepad.down, 100 ) );
-  utils.key( 'a', utils.throttle( gamepad.left, 100 ) );
-  utils.key( 'd', utils.throttle( gamepad.right, 100 ) );
+  var keys = {
+    'w': 'up'
+  , 's': 'down'
+  , 'a': 'left'
+  , 'd': 'right'
+  };
+
+  Object.keys( keys ).forEach( function( key ){
+    utils.key( key, utils.throttle( gamepad[ keys[ key ] ], 100 ) );
+  });
+
+  [
+  //   'w+a'
+  // , 'w+d'
+  // , 's+a'
+  // , 's+d'
+  ].forEach( function( combo ){
+    var handler = utils.throttle( function(){
+      var comboA = combo.split('+');
+      gamepad[ keys[ comboA[0] ] ]();
+      gamepad[ keys[ comboA[1] ] ]();
+    }, 100 );
+
+    utils.key( combo, handler );
+  });
 
   return gamepad;
 });

@@ -18,9 +18,7 @@ define(function(require){
   return Thing.extend({
     moveTransition: '-webkit-transform 0.1s linear'
 
-  , events: {
-      'click': 'onClick'
-    }
+  , events: {}
 
   , template: utils.template([
       '<div class="character looking-{{model.direction}}"></div>'
@@ -48,6 +46,10 @@ define(function(require){
         , ')'
         ].join('')
       );
+      this.$character.addClass( 'character-' + [
+        this.model.get('width')
+      , this.model.get('height')
+      ].join('x'));
       return this;
     }
 
