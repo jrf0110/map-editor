@@ -4,6 +4,8 @@ define(function(require){
   var stage       = require('stage');
   var boundary    = require('boundary');
   var viewport    = require('viewport');
+  var battle      = require('battle');
+  var hero        = require('hero');
   var StageView   = require('lib/stage-view');
 
   var app = {
@@ -13,12 +15,17 @@ define(function(require){
 
       boundary.setStage( stage );
 
+      battle.init({
+        players: [
+          new Player({
+            characters: [ hero ].concat( hero.party_members )
+          })
+        ]
+      });
+
       utils.domready( function(){
         document.body.appendChild( app.stageView.el );
-        
-        var character = stage.attributes.things.at(0);
-        viewport.follow( character );
-        gamepad.takeControl( character );
+        battle.start();
       });
     }
 

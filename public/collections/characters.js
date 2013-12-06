@@ -1,5 +1,5 @@
 /**
- * Models.Hero
+ * Collection Characters
  */
 
 if (typeof module === 'object' && typeof define !== 'function') {
@@ -11,11 +11,11 @@ if (typeof module === 'object' && typeof define !== 'function') {
 
 define(function(require){
   var utils = require('utils');
-  var Character = require('./character');
+  var Character = require('../models/character');
 
-  var Hero = Character.extend({
-    
+  var Characters = utils.Collection.extend({
+    model: Character
   });
 
-  return Hero;
+  return Characters;
 });

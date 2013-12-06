@@ -18,7 +18,8 @@
     "nunjucks": "~1.0.0",
     "grunt-contrib-less": "~0.8.1",
     "passport": "~0.1.17",
-    "passport-facebook": "~1.0.1"
+    "passport-facebook": "~1.0.1",
+    "glob": "~3.2.7"
   },
   "jam": {
     "packageDir": "public/jam",
