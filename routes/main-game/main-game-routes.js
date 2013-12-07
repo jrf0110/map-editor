@@ -5,8 +5,11 @@ module.exports = function( app ){
   app.get('/heroes/:id'
   , m.findUsersHero({ param: 'id' })
 
-    // Lookup current level
-  , function( req, res, next ){
+  , function lookupHeroParty( req, res, next ){
+      db.heroes_party
+    }
+
+  , function lookupCurrentLevel( req, res, next ){
       db.campaign_levels.findHeroCampaignLevel( req.param('id'), function( error, level ){
         if ( error ) return res.send(500);
 

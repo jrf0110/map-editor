@@ -28,12 +28,6 @@ define(function(require){
         battle.start();
       });
     }
-
-  , router: {
-      routes: {
-        
-      }
-    }
   };
 
   return app;
