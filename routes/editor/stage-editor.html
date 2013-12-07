@@ -2,6 +2,7 @@
 <html>
   <head>
     <link rel="stylesheet" href="/css/editor.gen.css">
+    <link rel="stylesheet" href="/css/main-game.gen.css">
 
     <script src="/jam/require.js"></script>
     <script src="/require-config.js"></script>
@@ -11,12 +12,16 @@
         return new User({{ user | json | safe }});
       });
 
+      define( 'stage', ['models/stage'], function( Stage ){
+        return new Stage({{ stage | json | safe }});
+      });
+
       require(['stage-editor'], function( app ){
         app.init();
       });
     </script>
   </head>
   <body>
-    <h1>Editor</h1>
+
   </body>
 </html>
