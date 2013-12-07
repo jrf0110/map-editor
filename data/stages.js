@@ -17,11 +17,14 @@ data.push({
   name: 'Plains 1'
 , size: size
 , tiles: (function(){
-    var i, ii, result = [];
+    var i, ii, result = [], inner;
+
     for ( i = 0; i < size; i++ ){
+      inner = [];
       for ( ii = 0; ii < size; ii++ ){
-        result.push('ground ground-grass-1');
+        inner.push('ground ground-grass-1');
       }
+      result.push( inner );
     }
     return result;
   })()
@@ -34,11 +37,14 @@ data.push({
   name: 'Plains 2'
 , size: size
 , tiles: (function(){
-    var i, ii, result = [];
+    var i, ii, result = [], inner;
+
     for ( i = 0; i < size; i++ ){
+      inner = [];
       for ( ii = 0; ii < size; ii++ ){
-        result.push('ground ground-grass-1');
+        inner.push('ground ground-grass-1');
       }
+      result.push( inner );
     }
     return result;
   })()
