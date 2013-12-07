@@ -1,6 +1,6 @@
 define(function(require){
   var utils     = require('utils');
-  var world     = require('world');
+  var stage     = require('stage');
   var itemTmpl  = '<li class="tile-choice tile {{pack}} {{tile}}" data-pack="{{pack}}" data-tile="{{tile}}"></li>';
 
   return utils.View.extend({
@@ -57,12 +57,12 @@ define(function(require){
         var x = $el.data('x');
         var y = $el.data('y');
 
-        if ( !world.get('tiles')[ y ] ) world.get('tiles')[ y ] = [];
+        if ( !stage.get('tiles')[ y ] ) stage.get('tiles')[ y ] = [];
 
-        world.get('tiles')[ y ][ x ] = $el.data('tile');
+        stage.get('tiles')[ y ][ x ] = $el.data('tile');
       });
 
-      world.save();
+      stage.save();
     }
 
   , onTileChoiceClick: function( e ){
