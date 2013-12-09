@@ -28,6 +28,11 @@ define(function(require){
       return this;
     }
 
+  , setEditor: function( editor ){
+      this.editor = editor;
+      return this;
+    }
+
   , enterEditMode: function(){
       this.editMode = true;
       this.$el.addClass( 'edit-mode' );

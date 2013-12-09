@@ -10,9 +10,15 @@ define(function(require){
     init: function(){
       app.stageView = new StageView();
       app.stageView.render();
+
       app.editorView = new EditorView({
         worldView: app.stageView
       });
+
+      app.editorView.render();
+
+      app.stageView.setEditor( app.editorView );
+      app.stageView.enterEditMode();
 
       utils.domready( function(){
         document.body.appendChild( app.editorView.el );
