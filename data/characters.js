@@ -14,7 +14,7 @@
 module.exports = function( db, callback ){
   var data = [];
 
-  var options = { returning: ['id'] };
+  var options = { returning: ['id', 'name'] };
 
   // Initial characters for Act 1
   data.push({
@@ -44,7 +44,9 @@ module.exports = function( db, callback ){
 
     var $where = { act: 1 };
     var $update = {
-      initial_characters: results.map( function( c ){
+      initial_characters: results.filter( function( c ){
+        return c.name !== 'Amisa';
+      }).map( function( c ){
         return c.id;
       })
     };

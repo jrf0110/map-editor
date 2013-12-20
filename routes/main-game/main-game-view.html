@@ -16,7 +16,7 @@
       });
 
       define( 'stage', ['models/stage'], function( Stage ){
-        return new Stage({{ stage | json | safe }});
+        return new Stage({{ level | json | safe }});
       });
 
       require(['main-game'], function( app ){

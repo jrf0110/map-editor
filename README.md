@@ -37,3 +37,7 @@ grunt
 ```
 
 File serving in development mode is done through the static file server express middleware. In prod, it is disabled. I have my nginx vhost configuration file checked in for when it goes to my VPS.
+
+## The rundown
+
+We need to allow for multiple users. Users can create multiple heroes. Heroes are the main characters of a campaign. Campaigns have levels that are derived from stages. Stages define the tiles, things, layers, and scripts of a level. Heroes will have a party of supporting characters that they accumulate over the course of the game. Campaigns are composed of a number of ordered stages (that hopefully we can generate procedurally). We'll have to track the progress of a hero through a campaign.
