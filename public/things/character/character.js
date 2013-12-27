@@ -18,7 +18,9 @@ define(function(require){
   return Thing.extend({
     moveTransition: '-webkit-transform 0.1s linear'
 
-  , events: {}
+  , events: {
+      // 'click': 'onClick'
+    }
 
   , template: utils.template([
       '<div class="character looking-{{model.direction}}"></div>'
@@ -40,9 +42,7 @@ define(function(require){
       this.$character.css(
         'background-image', [
           'url('
-        , config.spriteDir + '/'
         , this.model.get('sprite')
-        , '.png'
         , ')'
         ].join('')
       );

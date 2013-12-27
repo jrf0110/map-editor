@@ -5,6 +5,16 @@ var fixture = require('../lib/fixture');
 
 var tables = process.argv.slice(2);
 
+var order = [
+  'users'
+, 'campaigns'
+, 'characters'
+, 'stages'
+, 'heroes'
+];
+
+if ( tables.length === 0 ) tables = tables.concat( order );
+
 if ( tables.length > 0 ){
   var fns = tables.map( function( table ){
     return function( done ){

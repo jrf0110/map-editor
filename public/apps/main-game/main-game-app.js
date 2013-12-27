@@ -12,7 +12,6 @@ define(function(require){
   var app = {
     init: function(){
       app.stageView = new StageView();
-      app.stageView.render();
 
       boundary.setStage( stage );
 
@@ -25,6 +24,8 @@ define(function(require){
 
       , stage: stage
       });
+
+      app.stageView.render();
 
       utils.domready( function(){
         document.body.appendChild( app.stageView.el );

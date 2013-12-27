@@ -20,23 +20,22 @@ module.exports = function( db, callback ){
   data.push({
     name: 'Bob'
   , avatar: 'http://placekitten.com/100/100'
-  , sprite: '/assets/sprites/character-1.png'
-  , baseAttr: {}
+  , sprite: '/assets/sprites/character-2.png'
+  , attributes: {}
   });
 
   data.push({
     name: 'Alice'
   , avatar: 'http://placekitten.com/100/100'
   , sprite: '/assets/sprites/character-2.png'
-  , baseAttr: {}
+  , attributes: {}
   });
 
   data.push({
     name: 'Amisa'
   , avatar: 'http://placekitten.com/100/100'
   , sprite: '/assets/sprites/amisa-1.png'
-  , isHero: true
-  , baseAttr: {}
+  , attributes: {}
   });
 
   db.characters.insert( data, options, function( error, results ){

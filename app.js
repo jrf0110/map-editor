@@ -18,6 +18,8 @@ var
 , utils     = require('utils')
 ;
 
+db.sync();
+
 var nEnv = nunjucks.configure( __dirname + '/routes', {
   autoescape: true
 , express: app

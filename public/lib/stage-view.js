@@ -6,6 +6,7 @@ define(function(require){
   var $Things     = require('things');
   var stage       = require('stage');
   var config      = require('config');
+  var battle      = require('battle');
 
   var StageView = utils.View.extend({
     className: 'stage edit-mode'
@@ -22,8 +23,8 @@ define(function(require){
       // this.editor = new Editor({ stageView: this });
       // this.editor.$el.addClass('hide');
 
-      stage.on( 'change:tiles',   this.renderTiles, this );
-      stage.on( 'change:things',  this.renderThings, this );
+      // stage.on( 'change:tiles',   this.renderTiles, this );
+      // stage.on( 'change:things',  this.renderThings, this );
 
       return this;
     }
@@ -50,6 +51,7 @@ define(function(require){
   , render: function(){
       this.renderTiles();
       this.renderThings();
+      this.renderCharacters();
 
       return this;
     }
@@ -101,6 +103,24 @@ define(function(require){
       this.$el.prepend($els);
 
       return this;
+    }
+
+  , renderCharacters: function(){
+      var this_ = this;
+      var $els = utils.dom();
+
+      battle.players.forEach( function( player ){
+        player.characters.forEach( function( c ){
+          $els = $els.add(
+            new $Things.Character.Main({ model: c }).render().$el
+          );
+        });
+      });
+
+      this.$el.find('.character').remove();
+      this.$el.prepend( $els );
+
+      return this; 
     }
 
   , onTilesMouseDown: function( e ){
