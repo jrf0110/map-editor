@@ -48,16 +48,26 @@ define(function(require){
     }
 
   , tick: function(){
+      var this_ = this;
+
       // Get which players turn it is, and character
       var turn = turns.next();
 
       // Figure out bounds of movement
       turn.bounds = bounder.getBounds( this.stage, turn.character );
 
-      turn.player.requestAction( turn, function( action ){
+      turn.complete = function(){
         // Validate action
-        
-      });
+        if ( turn.move )
+        if ( !( (turn.move.x + 'x' + turn.move.y) in turn.bounds ) ){
+          console.log('Invalid Move', turn.move, turn.bounds);
+          return turn.player.requestAction( turn );
+        }
+
+        this_.tick();
+      };
+
+      turn.player.requestAction( turn );
     }
   });
 

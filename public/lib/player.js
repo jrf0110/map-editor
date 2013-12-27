@@ -22,9 +22,18 @@ define(function(require){
     return this;
   };
 
-  Player.prototype.requestAction = function( turn, callback ){
+  Player.prototype.requestAction = function( turn ){
     gamepad.takeControl( turn.character );
     viewport.follow( turn.character );
+
+    gamepad.once( 'enter', function(){
+      turn.move = {
+        x: turn.character.get('x')
+      , y: turn.character.get('y')
+      };
+
+      turn.complete();
+    });
 
     return this;
   };

@@ -14,7 +14,7 @@ define(function(require){
 
   var bounder = {
     getBounds: function( stage, character ){
-      var bounds = [];
+      var bounds = {};
 
       // Just draw a simple rectangle bounding region
       var y, x, startY, startX, endY, endX;
@@ -27,7 +27,7 @@ define(function(require){
         endX    = character.get('x') + 4;
 
         for ( x = startX; x <= endX; x++ ){
-          bounds.push({ x: x, y: y });
+          bounds[ x + 'x' + y ] = true;
         }
       }
 

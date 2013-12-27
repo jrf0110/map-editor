@@ -12,7 +12,7 @@ if (typeof module === 'object' && typeof define !== 'function') {
 define(function(require){
   var utils = require('utils');
 
-  var gamepad = {
+  var gamepad = Object.create( utils.extend({
     takeControl: function( character ){
       gamepad.character = character;
       return gamepad;
@@ -46,7 +46,11 @@ define(function(require){
       gamepad.character.move('left');
       return gamepad;
     }
-  };
+  }, utils.Events ));
+
+  utils.key( 'enter', function(){
+    gamepad.trigger('enter');
+  });
 
   var keys = {
     'w': 'up'
