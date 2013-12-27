@@ -4,6 +4,10 @@ var m     = require('middleware');
 module.exports = function( app ){
   app.get('/heroes/:id'
   , m.findUsersHero({ param: 'id' })
+  , function( req, res, next ){
+      console.log(res.locals.user);
+      next();
+    }
 
   , function lookupCurrentLevel( req, res, next ){
       db.campaign_levels.findHeroCampaignLevel( req.param('id'), function( error, level ){

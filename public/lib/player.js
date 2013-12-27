@@ -14,16 +14,19 @@ define(function(require){
   var gamepad   = require('gamepad');
   var utils     = require('utils');
 
-  var Player = function( characters, options ){
+  var Player = function( options ){
     options = options || {};
 
-    this.characters = characters;
-    this.options = options;
+    this.characters = options.characters;
+
+    return this;
   };
 
   Player.prototype.requestAction = function( turn, callback ){
     gamepad.takeControl( turn.character );
     viewport.follow( turn.character );
+
+    return this;
   };
 
   return Player;

@@ -11,7 +11,7 @@ if (typeof module === 'object' && typeof define !== 'function') {
 
 define(function(require){
   var utils   = require('utils');
-  var turn    = require('./turn');
+  var turns   = require('./turns');
   var bounder = require('./bounder');
 
   var coordinator = Object.create({
@@ -39,6 +39,8 @@ define(function(require){
 
       this.players = options.players;
       this.stage = options.stage;
+
+      turns.init( this.players );
     }
 
   , start: function(){
@@ -47,12 +49,10 @@ define(function(require){
 
   , tick: function(){
       // Get which players turn it is, and character
-      var turn = {
-        character: turnDecider.next()
-      };
+      var turn = turns.next();
 
       // Figure out bounds of movement
-      turn.bounds = bounder.getBounds( stage, turn.character );
+      turn.bounds = bounder.getBounds( this.stage, turn.character );
 
       turn.player.requestAction( turn, function( action ){
         // Validate action

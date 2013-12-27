@@ -7,6 +7,7 @@ define(function(require){
   var battle      = require('battle');
   var hero        = require('hero');
   var StageView   = require('lib/stage-view');
+  var Player      = require('lib/player');
 
   var app = {
     init: function(){
@@ -18,9 +19,11 @@ define(function(require){
       battle.init({
         players: [
           new Player({
-            characters: [ hero ].concat( hero.party_members )
+            characters: [ hero ].concat( hero.get('party') )
           })
         ]
+
+      , stage: stage
       });
 
       utils.domready( function(){

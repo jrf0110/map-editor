@@ -14,7 +14,13 @@ define(function(require){
   var Character = require('./character');
 
   var Hero = Character.extend({
-    
+    initialize: function( attributes ){
+      if ( this.get('party') ){
+        this.set('party', this.get('party').map( function( p ){
+          return new Character( p );
+        }));
+      }
+    }
   });
 
   return Hero;

@@ -41,7 +41,6 @@ app.configure(function(){
 
       req.user = user;
       res.locals.user = user;
-console.log(user);
       next();
     });
   });
