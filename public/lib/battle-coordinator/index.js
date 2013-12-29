@@ -56,6 +56,12 @@ define(function(require){
       // Figure out bounds of movement
       turn.bounds = bounder.getBounds( this.stage, turn.character );
 
+      this.stage.model.turnBounds = turn.bounds;
+
+      if ( turn.player.type === 'human' ){
+        this.stage.highlightTurnBounds();
+      }
+
       turn.complete = function(){
         // Validate action
         if ( turn.move )
@@ -64,7 +70,8 @@ define(function(require){
           return turn.player.requestAction( turn );
         }
 
-        this_.tick();
+        this_.stage.clearTurnBounds();
+        utils.defer( this_.tick.bind( this_ ) );
       };
 
       turn.player.requestAction( turn );

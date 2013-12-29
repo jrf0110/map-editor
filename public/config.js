@@ -18,6 +18,7 @@ define(function(require){
     defaults: {
       spriteDir: '/assets/sprites'
     , tileSize: 40
+    , thingMoveDuration: 140
     }
 
   , dev: {

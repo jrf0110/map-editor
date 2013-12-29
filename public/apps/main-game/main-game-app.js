@@ -6,13 +6,11 @@ define(function(require){
   var viewport    = require('viewport');
   var battle      = require('battle');
   var hero        = require('hero');
-  var StageView   = require('lib/stage-view');
   var Player      = require('lib/player');
+  var Controls    = require('views/on-screen-controls');
 
   var app = {
     init: function(){
-      app.stageView = new StageView();
-
       boundary.setStage( stage );
 
       battle.init({
@@ -25,10 +23,16 @@ define(function(require){
       , stage: stage
       });
 
-      app.stageView.render();
+      stage.render();
+
+      app.onScreenControls = new Controls().render();
 
       utils.domready( function(){
-        document.body.appendChild( app.stageView.el );
+        utils.touchClick.attach( document.body );
+
+        document.body.appendChild( stage.el );
+        document.body.appendChild( app.onScreenControls.el );
+
         battle.start();
       });
     }

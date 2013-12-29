@@ -1,6 +1,10 @@
 <!DOCTYPE HTML>
 <html>
   <head>
+    <meta content='width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=1.0, user-scalable=1' name='viewport' />
+
+    <meta name="viewport" content="width=device-width" />
+
     <link rel="stylesheet" href="/css/main-game.gen.css">
 
     <script src="/jam/require.js"></script>
@@ -15,8 +19,11 @@
         return new Hero({{ hero | json | safe }});
       });
 
-      define( 'stage', ['models/stage'], function( Stage ){
-        return new Stage({{ level | json | safe }});
+      define( 'stage', [
+        'models/stage', 'lib/stage-view'
+      ], function( Stage, StageView ){
+        var model = new Stage({{ level | json | safe }});
+        return new StageView({ model: model });
       });
 
       require(['main-game'], function( app ){

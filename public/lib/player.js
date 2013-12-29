@@ -18,6 +18,7 @@ define(function(require){
     options = options || {};
 
     this.characters = options.characters;
+    this.type = options.type || 'human';
 
     return this;
   };
@@ -27,6 +28,8 @@ define(function(require){
     viewport.follow( turn.character );
 
     gamepad.once( 'enter', function(){
+      gamepad.dropControl();
+
       turn.move = {
         x: turn.character.get('x')
       , y: turn.character.get('y')

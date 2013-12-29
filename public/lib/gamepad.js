@@ -10,7 +10,8 @@ if (typeof module === 'object' && typeof define !== 'function') {
 
 
 define(function(require){
-  var utils = require('utils');
+  var utils   = require('utils');
+  var config  = require('config');
 
   var gamepad = Object.create( utils.extend({
     takeControl: function( character ){
@@ -46,9 +47,17 @@ define(function(require){
       gamepad.character.move('left');
       return gamepad;
     }
+
+  , start: function(){
+      gamepad.trigger('enter');
+      return gamepad;
+    }
   }, utils.Events ));
 
   utils.key( 'enter', function(){
+    gamepad.trigger('enter');
+  });
+  utils.key( 'e', function(){
     gamepad.trigger('enter');
   });
 
@@ -60,7 +69,7 @@ define(function(require){
   };
 
   Object.keys( keys ).forEach( function( key ){
-    utils.key( key, utils.throttle( gamepad[ keys[ key ] ], 100 ) );
+    utils.key( key, utils.throttle( gamepad[ keys[ key ] ], config.thingMoveDuration ) );
   });
 
   [
@@ -73,7 +82,7 @@ define(function(require){
       var comboA = combo.split('+');
       gamepad[ keys[ comboA[0] ] ]();
       gamepad[ keys[ comboA[1] ] ]();
-    }, 100 );
+    }, config.thingMoveDuration );
 
     utils.key( combo, handler );
   });

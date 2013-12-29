@@ -4,7 +4,6 @@
 
 define(function(require){
   var utils   = require('utils');
-  var stage   = require('stage');
   var config  = require('config');
 
   var $window = utils.dom( window );
@@ -110,11 +109,7 @@ define(function(require){
   , onFollowingMove: function(){
       this.moveIfNecessary();
     }
-  }, utils.Events);
-
-  stage.on( 'change:tileSize', function( stage, size ){
-    viewport.options.buffer = size;
-  });
+  }, utils.Events );
 
   return Object.create( viewport );
 });

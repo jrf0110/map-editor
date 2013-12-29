@@ -21,7 +21,7 @@ define(function(require){
     }
 
   , check: function( x, y ){
-      return checker.stage.canMove( x, y );
+      return checker.stage.model.canMove( x, y );
     }
   };
 

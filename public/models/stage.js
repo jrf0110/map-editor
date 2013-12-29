@@ -10,6 +10,7 @@ define(function(require){
         var things = new Things( val, { stage: this } );
 
         this.thingPositions = {};
+        this.turnBounds = {};
 
         things.each( this.cacheThingPosition.bind( this ) );
 
@@ -24,7 +25,9 @@ define(function(require){
       if ( x >= this.attributes.tiles.length ) return false;
       if ( y >= this.attributes.tiles.length ) return false;
 
+      if ( !this.turnBounds[ x + 'x' + y ] )    return false;
       if ( this.thingPositions[ x + 'x' + y ] ) return false;
+
 
       return true;
     }

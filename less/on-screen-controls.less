@@ -1,0 +1,32 @@
+////////////////////////
+// On Screen Controls //
+////////////////////////
+
+.on-screen-controls {
+  display: none;
+  z-index: 1000;
+  position: fixed;
+  left: 0;
+  bottom: 20px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  list-style: none;
+}
+
+.on-screen-controls > .control {
+  display: inline-block;
+  margin: 0 8px;
+  padding: 0;
+}
+
+.on-screen-controls .control-btn {
+  padding: 4px 8px;
+}
+
+@media ( max-width: 700px ) {
+  .on-screen-controls {
+    display: block;
+  }
+}

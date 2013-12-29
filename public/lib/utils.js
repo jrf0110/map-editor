@@ -8,8 +8,11 @@ define(function(require){
   var handlebars  = require('handlebars');
                     require('jquery-say');
 
+  var FastClick   = require('/bower_components/fastclick/lib/fastclick.js');
 
   var utils = _.extend( {}, _ );
+
+  utils.touchClick = FastClick;
 
   utils.template = handlebars.compile;
 

@@ -16,7 +16,11 @@ define(function(require){
   var viewport  = require('viewport');
 
   return Thing.extend({
-    moveTransition: '-webkit-transform 0.1s linear'
+    moveTransition: [
+      '-webkit-transform '
+    , config.thingMoveDuration / 1000
+    , 's linear'
+    ].join('')
 
   , events: {
       // 'click': 'onClick'

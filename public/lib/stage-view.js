@@ -2,9 +2,7 @@ define(function(require){
   var utils       = require('utils');
   var scroll      = require('./scroll');
   var spacebar    = require('./spacebar');
-  // var Editor      = require('./editor');
   var $Things     = require('things');
-  var stage       = require('stage');
   var config      = require('config');
   var battle      = require('battle');
 
@@ -36,15 +34,15 @@ define(function(require){
 
   , enterEditMode: function(){
       this.editMode = true;
-      this.$el.addClass( 'edit-mode' );
-      this.editor.$el.removeClass( 'hide' );
+      this.$el.addClass('edit-mode');
+      this.editor.$el.removeClass('hide');
       return this;
     }
 
   , exitEditMode: function(){
       this.editMode = false;
-      this.$el.removeClass( '.edit-mode' );
-      this.editor.$el.addClass( 'hide' );
+      this.$el.removeClass('.edit-mode');
+      this.editor.$el.addClass('hide');
       return this;
     }
 
@@ -57,7 +55,7 @@ define(function(require){
     }
 
   , renderTiles: function(){
-      var size = config.tileSize * stage.get('size');
+      var size = config.tileSize * this.model.get('size');
 
       if ( this.editMode ){
         this.editor.render();
@@ -71,10 +69,10 @@ define(function(require){
 
       var tmpl = '<div class="tile {{class}}" data-tile="{{tile}}" data-x="{{x}}" data-y="{{y}}"></div>', out = "";
 
-      for ( var y = 0, l = stage.get('tiles').length; y < l; ++y ){
-        for ( var x = 0, ll = stage.get('tiles')[ y ].length; x < ll; ++x ){
-          out += tmpl.replace( '{{class}}', stage.get('tiles')[ y ][ x ] )
-                     .replace( '{{tile}}', stage.get('tiles')[ y ][ x ] )
+      for ( var y = 0, l = this.model.get('tiles').length; y < l; ++y ){
+        for ( var x = 0, ll = this.model.get('tiles')[ y ].length; x < ll; ++x ){
+          out += tmpl.replace( '{{class}}', this.model.get('tiles')[ y ][ x ] )
+                     .replace( '{{tile}}', this.model.get('tiles')[ y ][ x ] )
                      .replace( '{{x}}', x )
                      .replace( '{{y}}', y );
         }
@@ -87,13 +85,13 @@ define(function(require){
       var this_ = this;
       var $els = utils.dom();
 
-      stage.get('things').each( function( thing ){
+      this.model.get('things').each( function( thing ){
         if ( !(thing.get('type') in $Things) ) return;
 
         $els = $els.add(
           new $Things[ thing.get('type') ].Main({
             model:    thing
-          , tileSize: stage.get('tileSize')
+          , tileSize: this_.model.get('tileSize')
           }).render().$el
         );
       });
@@ -123,6 +121,24 @@ define(function(require){
       return this; 
     }
 
+  , highlightTurnBounds: function(){
+      var coords, stageWidth = this.model.get('size');
+      var $tile, $tiles = this.$tileHolder.find('.tile');
+
+      for ( var key in this.model.turnBounds ){
+        coords = key.split('x');
+        $tile = $tiles.eq( +coords[0] + ( +coords[1] * stageWidth ) );
+        $tile.addClass('highlight');
+      }
+
+      return this;
+    }
+
+  , clearTurnBounds: function(){
+      this.$tileHolder.find('.highlight').removeClass('highlight');
+      return this;
+    }
+
   , onTilesMouseDown: function( e ){
       if ( !spacebar.isPressed() ) return;
 
@@ -139,7 +155,7 @@ define(function(require){
         $el[0].className = "tile";
         $el.addClass( this.editor.current );
         $el.data( 'tile', this.editor.current );
-        stage.get('tiles')[ $el.data('y') ][ $el.data('x') ] = this.editor.current;
+        this.model.get('tiles')[ $el.data('y') ][ $el.data('x') ] = this.editor.current;
       }
     }
   });
