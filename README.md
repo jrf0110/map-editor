@@ -21,11 +21,14 @@ You need the grunt-cli installed globally:
 npm install -g grunt-cli
 ```
 
-Create the database:
+Create the database, load fixtures:
 
 ```
-psql -h localhost
+$ psql -h localhost
 postgres=# create database map_editor
+postgres=# \q
+$ ./bin/force-sync.js
+$ ./bin/load-fixtures.js
 ```
 
 I'm still in hack mode and there are still tons of remnants from when I first just wanted to create a tile map editor (hence the database name). Obviously, it will be refactored.
