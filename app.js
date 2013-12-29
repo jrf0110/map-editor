@@ -35,11 +35,10 @@ app.configure(function(){
   app.use(express.cookieSession());
   app.use(m.error());
   app.use(m.dirac());
-
   // Just make everyone the same user right now
   app.use( function( req, res, next ){
     db.users.findOne( 1, function( error, user ){
-      if ( error ) res.status(500).send();
+      if ( error ) return res.status(500).send();
 
       req.user = user;
       res.locals.user = user;
